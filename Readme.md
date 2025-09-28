@@ -36,7 +36,7 @@
 2. Configure a Access log for ALB :
 - Go to ALB Attributes >> Monitoring >> Access Log : Add the created bucket.
 3. Create a Lambda Role:
-- Assign then permission 'AWSLambdaBasicExecutionRole'.
+- Assign then permission ```AWSLambdaBasicExecutionRole```.
 - Add a policy to to connect to the s3 bucket:
 ```{
     "Version": "2012-10-17",
@@ -243,6 +243,6 @@ def lambda_handler(event, context):
   ]
 }
 ```
-- aws s3api put-bucket-notification-configuration \
+- ```aws s3api put-bucket-notification-configuration \
   --bucket nginx-alb-access-logs-v1  \
-  --notification-configuration file://s3_notification_config.json
+  --notification-configuration file://s3_notification_config.json```
