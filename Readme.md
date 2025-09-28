@@ -1,4 +1,4 @@
-# steps to crate an access logs for ALB & send it to cloudwatch
+# steps to create an access logs for ALB & send it to cloudwatch
 
 1. Create a S3 bucket :
 - Create a bucket for access log.
