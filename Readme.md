@@ -205,20 +205,10 @@ def lambda_handler(event, context):
         }
 ```
 - Replace the 'log_group_name=<log group name> & s3_bucket=<s3 name>'
-- zip lambda_function.zip lambda_function.py
-- aws lambda create-function \              
-  --function-name alb-log-processor \
-  --zip-file fileb://lambda_function.zip \
-  --handler lambda_function.lambda_handler \
-  --runtime python3.11 \
-  --role arn:aws:iam::697172517874:role/test-execution-role
-  - aws lambda add-permission \
-  --function-name alb-log-processor \
-  --principal s3.amazonaws.com \
-  --statement-id s3invoke \
-  --action lambda:InvokeFunction \
-  --source-arn arn:aws:s3:::nginx-alb-access-logs-v1
-- vi s3_notification_config.json
+- ```zip lambda_function.zip lambda_function.py```
+- ```aws lambda create-function function-name alb-log-processor --zip-file fileb://lambda_function.zip --handler lambda_function.lambda_handler --runtime python3.11 --role arn:aws:iam::697172517874:role/test-execution-role```
+- ``` aws lambda add-permission --function-name alb-log-processor --principal s3.amazonaws.com --statement-id s3invoke --action lambda:InvokeFunction --source-arn arn:aws:s3:::nginx-alb-access-logs-v1```
+- ```vi s3_notification_config.json```
 ```
 {
   "LambdaFunctionConfigurations": [
@@ -243,6 +233,4 @@ def lambda_handler(event, context):
   ]
 }
 ```
-- ```aws s3api put-bucket-notification-configuration \
-  --bucket nginx-alb-access-logs-v1  \
-  --notification-configuration file://s3_notification_config.json```
+- ```aws s3api put-bucket-notification-configuration --bucket nginx-alb-access-logs-v1 --notification-configuration file://s3_notification_config.json```
