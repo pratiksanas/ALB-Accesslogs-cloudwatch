@@ -65,6 +65,7 @@
 ```
 - Replace the bucket names.
 4. Create a Lambda function:
+- ```vi lambda_function.py```
 ```import boto3
 import gzip
 import io
